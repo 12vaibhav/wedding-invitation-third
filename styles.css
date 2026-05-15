@@ -1,0 +1,453 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  --primary: #9C2C2C; /* Deep Maroon */
+  --accent: #D4AF77; /* Royal Gold */
+  --neutral: #F8F1E3; /* Warm Ivory */
+  --soft-accent: #E8B5A0; /* Blush Saffron */
+  --dark-overlay: rgba(26, 15, 10, 0.6); /* #1A0F0A at 60% */
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-script: 'Alex Brush', cursive;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--neutral);
+  color: var(--primary);
+  overflow-x: hidden;
+  background-image: radial-gradient(var(--accent) 0.5px, transparent 0.5px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  background-color: var(--neutral);
+  /* Subtle texture overlay */
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4af77' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: -1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.script-font {
+  font-family: var(--font-script);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #D4AF77 0%, #E8B5A0 50%, #D4AF77 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #D4AF77 0%, #E8B5A0 50%, #D4AF77 100%);
+}
+
+.knot-border {
+  position: relative;
+  border: 1px solid rgba(212, 175, 119, 0.3); /* Gold border */
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  background: var(--neutral);
+}
+
+.knot-border::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(45deg, transparent 40%, var(--accent), transparent 60%);
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.knot-border:hover {
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(156, 44, 44, 0.05);
+}
+
+.knot-border:hover::before {
+  opacity: 1;
+  animation: borderGlow 2s linear infinite;
+}
+
+.knot-border > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes borderGlow {
+  0% { transform: scale(1) translate(-10px, -10px); }
+  50% { transform: scale(1.02) translate(10px, 10px); }
+  100% { transform: scale(1) translate(-10px, -10px); }
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #C49F67 100%);
+  color: var(--neutral);
+  font-family: var(--font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 119, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 119, 0.5);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  border-radius: 50%;
+}
+
+.btn-primary:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.divider-knot {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  position: relative;
+  margin: 3rem 0;
+}
+
+.divider-knot::after {
+  content: '❋'; /* Lotus / Motif representation */
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent);
+  background: var(--neutral);
+  padding: 0 10px;
+  font-size: 1.2rem;
+}
+
+/* Timeline specific */
+.timeline-line {
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--accent), transparent);
+  transform: translateX(-50%);
+}
+
+.timeline-dot {
+  width: 20px; height: 20px;
+  background: var(--neutral);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  top: 20px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(212, 175, 119, 0.5);
+}
+
+/* Gallery hover */
+.gallery-img-container {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+.gallery-img-container img {
+  transition: transform 0.6s ease;
+}
+
+.gallery-img-container:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-img-container::after {
+  content: '';
+  position: absolute;
+  top: 10px; left: 10px; right: 10px; bottom: 10px;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  transition: all 0.4s ease;
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+.gallery-img-container:hover::after {
+  opacity: 1;
+  top: 15px; left: 15px; right: 15px; bottom: 15px;
+}
+
+/* Custom Inputs */
+input, textarea, select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(212, 175, 119, 0.4);
+  color: var(--primary);
+  padding: 10px 0;
+  font-family: var(--font-body);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+  box-shadow: 0 1px 0 0 var(--accent);
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(156, 44, 44, 0.5);
+}
+
+/* Floating Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-anim {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Scroll Prompt Arrow */
+.scroll-prompt {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-15px); }
+  60% { transform: translateY(-7px); }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .timeline-line { left: 20px; }
+  .timeline-dot { left: 20px; }
+  .timeline-card { padding-left: 50px !important; }
+}
+
+/* =============================================
+   MOBILE RESPONSIVE OVERRIDES (max-width: 767px)
+   Desktop styles are preserved via md: prefixes
+   ============================================= */
+@media (max-width: 767px) {
+
+  /* --- Fix background-attachment: fixed (broken on iOS) --- */
+  section[style*="background-attachment: fixed"] {
+    background-attachment: scroll !important;
+  }
+
+  /* --- HERO SECTION --- */
+  #hero .gsap-fade-up {
+    margin-top: 0 !important;
+  }
+
+  /* Hero names: tighten up on very small screens */
+  #hero h1 {
+    font-size: 3rem !important;
+    line-height: 1.1;
+  }
+
+  /* Hero monogram container: reduce bottom margin */
+  #hero .mb-12 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Ganesha SVG: slightly smaller on mobile */
+  #hero img[alt="Ganesha"] {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  /* Hero ring SVG: match size */
+  #hero svg.absolute.w-28 {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  /* Hero "weds" script text */
+  #hero .script-font {
+    font-size: 2rem !important;
+  }
+
+  /* Hero event details line: allow wrapping */
+  #hero .flex.items-center.justify-center.gap-2 {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+    text-align: center;
+  }
+
+  /* Hero venue text: let it break */
+  #hero span.text-accent.font-medium {
+    text-align: center;
+    word-break: break-word;
+  }
+
+  /* Hero RSVP button: full-width on mobile */
+  #hero .mb-12.z-30 button {
+    width: 90vw;
+    max-width: 320px;
+  }
+
+  /* --- OUR LOVE STORY SECTION --- */
+  /* Photos container: fixed height on mobile instead of aspect-square */
+  section .aspect-square.max-w-md {
+    aspect-ratio: 4/3;
+  }
+
+  /* Story text card: tighter padding */
+  section .bg-\\[\\#fcf9f2\\]\\/95 {
+    padding: 1.5rem !important;
+  }
+
+  /* Section headings: scale down */
+  section h2.text-5xl {
+    font-size: 2.25rem !important;
+  }
+
+  /* --- FAMILY BLESSING SECTION --- */
+  /* Script names: tighter on mobile */
+  .script-font.text-\\[2\\.75rem\\] {
+    font-size: 2rem !important;
+  }
+
+  /* --- MUHURAT / WEDDING DETAILS --- */
+  /* Date text: scale down */
+  .script-font.text-6xl {
+    font-size: 3rem !important;
+  }
+
+  /* "November 2026" text */
+  .script-font.text-5xl {
+    font-size: 2.5rem !important;
+  }
+
+  /* Invitation text */
+  .script-font.text-3xl {
+    font-size: 1.6rem !important;
+  }
+
+  /* Card inner padding */
+  .p-4.md\\:p-8 {
+    padding: 1rem !important;
+  }
+
+  /* --- CEREMONY TIMELINE SECTION --- */
+  /* On mobile: stack the timeline cards full-width with left-indent instead of centered line */
+  .timeline-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding-left: 3rem;
+  }
+
+  /* Timeline central line: move to left edge */
+  .absolute.left-1\\/2.transform.-translate-x-1\\/2.top-0.bottom-0 {
+    left: 1rem !important;
+    transform: none !important;
+  }
+
+  /* Timeline floral node: reposition to left */
+  .absolute.left-1\\/2.transform.-translate-x-1\\/2.w-8 {
+    left: 0.25rem !important;
+    transform: none !important;
+  }
+
+  /* Timeline text and image: full width */
+  .timeline-card > div[class*="md:w-[45%]"] {
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 1rem !important;
+    text-align: left !important;
+  }
+
+  /* --- CHERISHED MOMENTS / GALLERY --- */
+  /* Gallery: 2-column grid on mobile instead of 1 */
+  .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+
+  /* --- GRAND VENUE SECTION --- */
+  /* Venue map: reduce height on mobile */
+  .h-\\[350px\\] {
+    height: 220px !important;
+  }
+
+  /* Venue info cards: stack vertically (already default, ensure no overflow) */
+  .flex.flex-col.lg\\:flex-row {
+    gap: 1.5rem !important;
+  }
+
+  /* --- RSVP SECTION --- */
+  /* RSVP card: tighter padding */
+  .pb-16.pt-12 {
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* RSVP form inputs: full width stacked */
+  #rsvp-form .grid-cols-1.md\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* RSVP submit button: full width */
+  #rsvp-form button[type="submit"] {
+    width: 100% !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
+  /* --- FOOTER --- */
+  /* Footer giant monogram text: scale down to avoid overflow */
+  footer h1.text-\\[20rem\\] {
+    font-size: 8rem !important;
+  }
+
+  /* Footer script: scale down */
+  footer .script-font.text-4xl {
+    font-size: 1.75rem !important;
+  }
+
+  /* Footer parent names: allow wrapping */
+  footer p.text-lg {
+    font-size: 0.9rem !important;
+    line-height: 1.7;
+  }
+}
+
+/* Slow Zoom Animation for Hero Background */
+@keyframes slowZoom {
+  0% { transform: scale(1.05); filter: brightness(1); }
+  100% { transform: scale(1.15); filter: brightness(1.2); }
+}
+
+.animate-slow-zoom {
+  animation: slowZoom 15s ease-in-out infinite alternate;
+}
