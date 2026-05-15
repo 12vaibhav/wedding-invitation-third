@@ -1,3 +1,9 @@
+// Force scroll to top on reload
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 document.addEventListener('DOMContentLoaded', () => {
   // Register GSAP plugins
   gsap.registerPlugin(ScrollTrigger);
